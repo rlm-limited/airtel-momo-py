@@ -12,7 +12,7 @@ from airtel_momo.models.callback_status_code import CallbackStatusCode, callback
 SAMPLE = {
     "transaction": {
         "id": "BBZMiscxy",
-        "message": "Paid RWF 5,000 to TECHNOLOGIES LIMITED Charge RWF 140, Trans ID MP210603.1234.L06941.",
+        "message": "Paid RWF 5,000 to MeshPower Ltd Charge RWF 140, Trans ID MP210603.1234.L06941.",
         "status_code": "TS",
         "airtel_money_id": "MP210603.1234.L06941",
     }
