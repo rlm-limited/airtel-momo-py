@@ -1,0 +1,40 @@
+name: Release
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  release:
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write # Needed for creating releases
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Fetch all history for changelog generation
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12.11"
+
+      - name: Install uv and dependencies
+        run: |
+          pip install uv
+          uv sync
+          uv pip install -r pyproject.toml
+
+      - name: Get the latest tag
+        id: get_tag
+        run: echo "TAG=$(git describe --tags --abbrev=0)" >> $GITHUB_ENV
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          body: ${{ env.CHANGELOG }}
+          files: |
+            "input-${{ env.TAG }}.zip"
+          draft: false
+          generate_release_notes: true
