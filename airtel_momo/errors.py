@@ -13,4 +13,17 @@ class UnexpectedStatus(Exception):
         )
 
 
-__all__ = ["UnexpectedStatus"]
+class CallbackParseError(Exception):
+    """Raised when an inbound Airtel callback body cannot be parsed
+
+    Retrying an unparseable payload cannot help, so callers should answer it with a 4xx rather than
+    a 5xx that would make Airtel redeliver it.
+    """
+
+    def __init__(self, message: str, content: bytes | str | None = None):
+        self.content = content
+
+        super().__init__(message)
+
+
+__all__ = ["CallbackParseError", "UnexpectedStatus"]

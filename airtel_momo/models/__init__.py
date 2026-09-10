@@ -1,5 +1,8 @@
 """Contains all the data models used in inputs/outputs"""
 
+from .callback_body import CallbackBody
+from .callback_status_code import CallbackStatusCode, callback_status_description
+from .callback_transaction import CallbackTransaction
 from .oauth_2_token_body import Oauth2TokenBody
 from .oauth_2_token_response import Oauth2TokenResponse
 from .payment_data import PaymentData
@@ -12,6 +15,9 @@ from .subscriber import Subscriber
 from .transaction import Transaction
 
 __all__ = (
+    "CallbackBody",
+    "CallbackStatusCode",
+    "CallbackTransaction",
     "Oauth2TokenBody",
     "Oauth2TokenResponse",
     "PaymentData",
@@ -22,6 +28,7 @@ __all__ = (
     "Status",
     "Subscriber",
     "Transaction",
+    "callback_status_description",
     "response_code_description",
     "response_code_reason",
 )
